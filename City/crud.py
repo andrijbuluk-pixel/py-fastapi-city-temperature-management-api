@@ -43,7 +43,7 @@ def update_city(
     return db_city
 
 
-def delete_city(db: Session, db_city: int):
+def delete_city(db: Session, db_city: models.DBCity):
     db.delete(db_city)
     db.commit()
     return db_city

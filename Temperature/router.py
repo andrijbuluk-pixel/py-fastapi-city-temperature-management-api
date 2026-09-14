@@ -33,7 +33,7 @@ async def update_temperature(
 
     async with httpx.AsyncClient() as client:
         for city in cities:
-            await asyncio.sleep(5)
+            await asyncio.gather()
 
             url_parameters_city = (
                 f"https://geocoding-api.open-meteo.com/v1/search"
@@ -78,16 +78,12 @@ async def update_temperature(
         return updated_temperatures
 
 
-@router.get("/temperatures", response_model=list[schemas.Temperature])
-def get_temperatures(
-        db: Session = Depends(get_db)
-) -> list[schemas.Temperature]:
-    return crud.get_all_temperature(db=db)
-
-
-@router.get("/temperatures/{city_id}", response_model=list[schemas.Temperature])
+@router.get("/temperatures/", response_model=list[schemas.Temperature])
 def get_temperature_id(
-        city_id: int,
+        city_id: int = None,
         db: Session = Depends(get_db)
 ):
-    return crud.get_temperature_by_city_id(db=db, city_id=city_id)
+
+    if city_id is not None:
+        return crud.get_temperature_by_city_id(db=db, city_id=city_id)
+    return crud.get_all_temperature(db=db)
