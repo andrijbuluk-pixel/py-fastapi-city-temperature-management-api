@@ -1,3 +1,4 @@
+from pydantic import ConfigDict
 from sqlalchemy import Column, Integer, ForeignKey, DateTime, Float
 
 from sqlalchemy.orm import relationship
@@ -14,3 +15,5 @@ class DBTemperature(Base):
     date_time = Column(DateTime)
     temperature = Column(Float)
     city = relationship(DBCity)
+
+    model_config = ConfigDict(from_attributes=True)

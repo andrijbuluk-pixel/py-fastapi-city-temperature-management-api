@@ -13,7 +13,7 @@ def get_all_temperature(db: Session):
 def get_temperature_by_city_id(db: Session, city_id: int):
     return db.query(
         models.DBTemperature
-    ).filter(models.DBTemperature.id == city_id).first()
+    ).filter(models.DBTemperature.city_id == city_id).all()
 
 
 def update_temperature_city(

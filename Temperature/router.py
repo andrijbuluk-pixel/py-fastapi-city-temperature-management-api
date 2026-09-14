@@ -80,12 +80,13 @@ async def update_temperature(
 
 @router.get("/temperatures", response_model=list[schemas.Temperature])
 def get_temperatures(
+        city_id: int,
         db: Session = Depends(get_db)
 ) -> list[schemas.Temperature]:
-    return crud.get_all_temperature(db=db)
+    return crud.get_all_temperature(db=db, city_id=city_id)
 
 
-@router.get("/temperatures/{city_id}", response_model=schemas.Temperature)
+@router.get("/temperatures/{city_id}", response_model=list[schemas.Temperature])
 def get_temperature_id(
         city_id: int,
         db: Session = Depends(get_db)
