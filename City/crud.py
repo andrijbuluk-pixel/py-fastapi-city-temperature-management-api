@@ -26,6 +26,7 @@ def create_city(db: Session, city: schemas.CityCreate):
 
     return db_city_create
 
+
 def update_city(
         db: Session,
         city: schemas.CityUpdate,
@@ -40,6 +41,7 @@ def update_city(
     db.commit()
     db.refresh(db_city)
     return db_city
+
 
 def delete_city(db: Session, db_city: int):
     db.delete(db_city)

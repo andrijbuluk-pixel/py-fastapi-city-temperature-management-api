@@ -36,7 +36,8 @@ async def update_temperature(
             await asyncio.sleep(5)
 
             url_parameters_city = (
-                f"https://geocoding-api.open-meteo.com/v1/search?name={city.name}"
+                f"https://geocoding-api.open-meteo.com/v1/search"
+                f"?name={city.name}"
             )
             response = await client.get(url_parameters_city)
             geo = response.json()

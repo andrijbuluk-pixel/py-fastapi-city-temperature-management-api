@@ -16,6 +16,7 @@ class City(CityBase):
     class Config:
         orm_mode = True
 
+
 class CityUpdate(CityBase):
     name: str | None = None
     additional_info: str | None = None

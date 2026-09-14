@@ -8,6 +8,7 @@ app = FastAPI()
 app.include_router(CityRouter.router)
 app.include_router(TemperatureRouter.router)
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
